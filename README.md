@@ -367,7 +367,7 @@ module "service_name" {
 Contributions are welcome! Please follow these steps:
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-service`)
+2. Create a feature branch 
 3. Implement your changes
 4. Add thorough documentation
 5. Include tests where applicable
