@@ -1,4 +1,4 @@
-# Modular EC2 Terraform Configuration
+# EC2, VPC Terraform Configuration
 
 This repository contains a Terraform configuration for provisioning AWS EC2 instances with all necessary supporting infrastructure.
 
