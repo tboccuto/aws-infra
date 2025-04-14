@@ -2,12 +2,12 @@
 
 ## Documentation
 
-This guide provides step-by-step instructions for setting up HTTPS using Let's Encrypt certificates with Nginx on Amazon Linux.
+This guide provides step-by-step instructions for setting up HTTPS using Let's Encrypt certificates with Nginx on Amazon Linux 3 using open standard Automatic Certificate Management Environment (ACME). Here is the RFC specification for ACME https://datatracker.ietf.org/doc/html/rfc8555.
 
 ## Prerequisites
 
 - EC2 instance with Amazon Linux
-- Domain name pointing to your server's IP address
+- Domain name pointing to your server's IP address ("Automatic" Renewal requires instance IP is publicy available)
 - Nginx installed and running
 - Port 80 and 443 open in security group
 
@@ -34,6 +34,7 @@ server {
     server_name example.com;
 
     # Let's Encrypt verification location
+    # https://letsencrypt.org/docs/challenge-types/
     location /.well-known/acme-challenge/ {
         root /var/www/letsencrypt;
         allow all;
@@ -139,7 +140,7 @@ sudo systemctl reload nginx
 
 ## Verify Automatic Renewal
 
-Let's Encrypt certificates are valid for 90 days. Certbot sets up automatic renewal.
+Let's Encrypt certificates are valid for 90 days. Certbot sets up automatic renewal. 
 
 1. Verify certbot timer is active:
 
@@ -153,17 +154,9 @@ sudo systemctl list-timers | grep certbot
 sudo certbot renew --dry-run
 ```
 
-## Troubleshooting
+## Some Considerations 
 
 - **Connection timeouts during verification**: Check security groups, network ACLs, and DNS settings
 - **Permission issues**: Ensure nginx user can access the /var/www/letsencrypt directory
 - **Certificate not found**: Check paths in Nginx configuration
 - **502 Bad Gateway**: Backend application not running or misconfigured
-
-## Next Steps
-
-- Configure your actual application in the HTTPS server block
-- Set up stronger SSL parameters
-- Implement HTTP/2
-- Configure HSTS for added security
-

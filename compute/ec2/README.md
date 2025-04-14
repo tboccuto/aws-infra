@@ -115,13 +115,3 @@ Modify the security module's `main.tf` file to add or remove ingress/egress rule
 - Lock Terraform module versions
 - Use separate AWS accounts for different environments
 
-## Troubleshooting
-
-- **Issue**: Terraform can't find credentials
-  **Solution**: Configure AWS CLI or set environment variables
-
-- **Issue**: AMI not found
-  **Solution**: Verify AMI ID exists in the target region
-
-- **Issue**: Security group rules not applying
-  **Solution**: Check VPC configuration and rule syntax
